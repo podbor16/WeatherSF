@@ -9,7 +9,7 @@ const PLACES = [
 ];
 
 const API_KEY = '0cb51d4efc218a29f4df6bc78ae1be0b';
-const API_URL = 'https://api.openweathermap.org/data/2.5/onecall';
+const API_URL = 'https://api.openweathermap.org/data/3.0/onecall';
 
 const WeatherDisplay = ({ lat, lon, name }) => {
   const [weatherData, setWeatherData] = useState(null);
