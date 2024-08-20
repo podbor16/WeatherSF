@@ -8,8 +8,8 @@ const PLACES = [
   { name: 'Omsk', lat: 54.9914, lon: 73.3686 }
 ];
 
-const API_KEY = '0cb51d4efc218a29f4df6bc78ae1be0b';
-const API_URL = 'https://api.openweathermap.org/data/3.0/onecall';
+const API_KEY = 'c648259cb9a4bce84a29f745c43da88c';
+const API_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 
 const WeatherDisplay = ({ lat, lon, name }) => {
   const [weatherData, setWeatherData] = useState(null);
@@ -31,20 +31,14 @@ const WeatherDisplay = ({ lat, lon, name }) => {
   if (!weatherData) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error.message}</div>;
 
-  const iconUrl = `http://openweathermap.org/img/w/${weatherData.weather[0].icon}.png`;
 
   return (
-    <div>
-      <h1>
-        {weatherData.weather[0].main} in {name}
-        <img src={iconUrl} alt={weatherData.weather[0].description} />
-      </h1>
-      <p>Current: {weatherData.main.temp}°C</p>
-      <p>High: {weatherData.main.temp_max}°C</p>
-      <p>Low: {weatherData.main.temp_min}°C</p>
-      <p>Wind Speed: {weatherData.wind.speed} m/s</p>
-    </div>
-  );
+		<div>
+			<h1>
+			</h1>
+			<p>Current: {weatherData.city.population}</p>
+		</div>
+	);
 };
 
 const App = () => {
