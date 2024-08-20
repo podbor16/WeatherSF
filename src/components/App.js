@@ -8,8 +8,8 @@ const PLACES = [
   { name: 'Omsk', zip: '96803' }
 ];
 
-const API_KEY = 'c648259cb9a4bce84a29f745c43da88c';
-const API_URL = 'https://api.openweathermap.org/data/2.5/weather';
+const API_KEY = '0cb51d4efc218a29f4df6bc78ae1be0b';
+const API_URL = 'https://api.openweathermap.org/data/3.0/onecall?lat={lat}&lon={lon}&exclude={part}&appid={API_KEY}';
 
 const WeatherDisplay = ({ zip }) => {
   const [weatherData, setWeatherData] = useState(null);
