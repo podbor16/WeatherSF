@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import "../components/App.css";
+import "./App.css";
 
 const PLACES = [
   { name: 'Tomsk', lat: 56.4977, lon: 84.9744 },
@@ -14,6 +14,7 @@ const API_URL = 'https://api.openweathermap.org/data/2.5/forecast';
 const WeatherDisplay = ({ lat, lon, name }) => {
   const [weatherData, setWeatherData] = useState(null);
   const [error, setError] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(0);
 
   useEffect(() => {
     const fetchWeatherData = async () => {
@@ -31,17 +32,39 @@ const WeatherDisplay = ({ lat, lon, name }) => {
   if (!weatherData) return <div className="loading">Loading...</div>;
   if (error) return <div className="error">Error: {error.message}</div>;
 
+  const currentWeather = weatherData.list[selectedDay];
+  const fiveDayForecast = weatherData.list.slice(0, 5);
 
   return (
-		<div>
-			<h1>
-			</h1>
-			<h1>Weather in {weatherData.city.name}</h1>
-      <p>Temperature: {weatherData.list[0].main.temp}°C</p>
-      <p>Humidity: {weatherData.list[0].main.humidity}%</p>
-      <p>Wind Speed: {weatherData.list[0].wind.speed} m/s</p>
-		</div>
-	);
+    <div className="weather">
+      <h1>Weather in {weatherData.city.name}</h1>
+      <p>
+        <select value={selectedDay} onChange={(e) => setSelectedDay(e.target.value)}>
+          {fiveDayForecast.map((day, index) => (
+            <option key={index} value={index}>
+              {new Date(day.dt * 1000 + (5 - (new Date(day.dt * 1000).getDay() % 7)) * 24 * 60 * 60 * 1000).toLocaleDateString()}
+            </option>
+          ))}
+        </select>
+      </p>
+      <h2>Current Weather</h2>
+      <p>Temperature: {currentWeather.main.temp}°C</p>
+      <p>Humidity: {currentWeather.main.humidity}%</p>
+      <p>Wind Speed: {currentWeather.wind.speed} m/s</p>
+
+      <h2>5-Day Forecast</h2>
+      <ul>
+        {fiveDayForecast.map((day, index) => (
+          <li key={index}>
+            <p>Date: {new Date(day.dt * 1000).toLocaleDateString()}</p>
+            <p>Temperature: {day.main.temp}°C</p>
+            <p>Humidity: {day.main.humidity}%</p>
+            <p>Wind Speed: {day.wind.speed} m/s</p>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 };
 
 const App = () => {
