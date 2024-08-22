@@ -36,7 +36,10 @@ const WeatherDisplay = ({ lat, lon, name }) => {
 		<div>
 			<h1>
 			</h1>
-			<p>Current: {weatherData.city.population}</p>
+			<h1>Weather in {weatherData.name}</h1>
+      <p>Temperature: {weatherData.main.temp}°C</p>
+      <p>Humidity: {weatherData.main.humidity}%</p>
+      <p>Wind Speed: {weatherData.wind.speed} m/s</p>
 		</div>
 	);
 };
