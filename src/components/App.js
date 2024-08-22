@@ -36,10 +36,10 @@ const WeatherDisplay = ({ lat, lon, name }) => {
 		<div>
 			<h1>
 			</h1>
-			<h1>Weather in {weatherData.name}</h1>
-      <p>Temperature: {weatherData.main.temp}°C</p>
-      <p>Humidity: {weatherData.main.humidity}%</p>
-      <p>Wind Speed: {weatherData.wind.speed} m/s</p>
+			<h1>Weather in {weatherData.city.name}</h1>
+      <p>Temperature: {weatherData.list[0].main.temp}°C</p>
+      <p>Humidity: {weatherData.list[0].main.humidity}%</p>
+      <p>Wind Speed: {weatherData.list[0].wind.speed} m/s</p>
 		</div>
 	);
 };
