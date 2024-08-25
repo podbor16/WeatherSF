@@ -53,16 +53,16 @@ const WeatherDisplay = ({ lat, lon, name }) => {
       <p>Wind Speed: {currentWeather.wind.speed} m/s</p>
 
       <h2>5-Day Forecast</h2>
-<ul>
-  {fiveDayForecast.slice(0, 5).map((day, index) => (
-    <li key={index}>
-      <p>Date: {new Date(day.dt * 1000).toLocaleDateString()}</p>
-      <p>Temperature: {day.main.temp}°C</p>
-      <p>Humidity: {day.main.humidity}%</p>
-      <p>Wind Speed: {day.wind.speed} m/s</p>
-    </li>
-  ))}
-</ul>
+      <ul>
+        {fiveDayForecast.map((day, index) => (
+          <li key={index}>
+            <p>Date: {new Date(day.dt * 1000).toLocaleDateString()}</p>
+            <p>Temperature: {day.main.temp}°C</p>
+            <p>Humidity: {day.main.humidity}%</p>
+            <p>Wind Speed: {day.wind.speed} m/s</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };
